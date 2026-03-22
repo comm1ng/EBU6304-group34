@@ -17,3 +17,4 @@ This project develops a Teaching Assistant (TA) Recruitment System for BUPT Inte
 - Shanyu6:231220105(Member)
 - ZXZ1219:231221146(Member)
 - zpz999:231222958(Member)
+- Asukaaa111:231220002(Member)
