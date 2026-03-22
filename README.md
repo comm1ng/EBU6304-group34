@@ -10,6 +10,8 @@ This project develops a Teaching Assistant (TA) Recruitment System for BUPT Inte
 ---
 
 ## Team Members
+- Github account:qmid(Lead/Member)
+- qrsikno2: 190898878(Support TA)
 - Yubo Yang
 - Peizhi Zhao
 - Yifan Lyu
