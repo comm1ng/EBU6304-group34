@@ -14,7 +14,3 @@ This project develops a Teaching Assistant (TA) Recruitment System for BUPT Inte
 - qrsikno2: 190898878(Support TA)
 - Utopianing:231221892(Member)
 - comm1ng:231221467(Lead)
-- Peizhi Zhao
-- Xinrui He
-- Zibo Wang
-- Zigeng Li
