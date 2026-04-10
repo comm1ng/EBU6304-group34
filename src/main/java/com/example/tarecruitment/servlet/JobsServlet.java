@@ -4,6 +4,7 @@ import com.example.tarecruitment.model.Job;
 import com.example.tarecruitment.model.JobApplication;
 import com.example.tarecruitment.model.Role;
 import com.example.tarecruitment.model.User;
+import com.example.tarecruitment.util.ValidationUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +24,10 @@ public class JobsServlet extends BaseServlet {
             return;
         }
 
-        List<Job> openJobs = container().getJobService().getOpenJobs();
+        String keyword = ValidationUtil.safeTrim(request.getParameter("keyword"));
+        String mode = ValidationUtil.safeTrim(request.getParameter("mode"));
+
+        List<Job> openJobs = container().getJobService().searchOpenJobs(keyword, mode);
         List<JobApplication> myApplications = container().getApplicationService().getApplicationsByTa(user.getId());
 
         Map<String, String> appliedStatusByJobId = new HashMap<>();
@@ -31,6 +35,8 @@ public class JobsServlet extends BaseServlet {
             appliedStatusByJobId.put(application.getJobId(), application.getStatus().name());
         }
 
+        request.setAttribute("keyword", keyword);
+        request.setAttribute("mode", mode);
         request.setAttribute("openJobs", openJobs);
         request.setAttribute("appliedStatusByJobId", appliedStatusByJobId);
         forward(request, response, "jobs.jsp", user, Role.TA);

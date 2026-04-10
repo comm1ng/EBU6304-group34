@@ -9,6 +9,8 @@ public class Job {
     private String description;
     private List<String> requiredSkills;
     private int hoursPerWeek;
+    private String deadline;
+    private String locationMode;
     private String postedByUserId;
     private JobStatus status;
     private String createdAt;
@@ -19,11 +21,18 @@ public class Job {
 
     public Job(String id, String title, String description, List<String> requiredSkills, int hoursPerWeek,
                String postedByUserId, JobStatus status, String createdAt) {
+        this(id, title, description, requiredSkills, hoursPerWeek, "", "", postedByUserId, status, createdAt);
+    }
+
+    public Job(String id, String title, String description, List<String> requiredSkills, int hoursPerWeek,
+               String deadline, String locationMode, String postedByUserId, JobStatus status, String createdAt) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.requiredSkills = requiredSkills == null ? new ArrayList<>() : new ArrayList<>(requiredSkills);
         this.hoursPerWeek = hoursPerWeek;
+        this.deadline = deadline;
+        this.locationMode = locationMode;
         this.postedByUserId = postedByUserId;
         this.status = status;
         this.createdAt = createdAt;
@@ -67,6 +76,22 @@ public class Job {
 
     public void setHoursPerWeek(int hoursPerWeek) {
         this.hoursPerWeek = hoursPerWeek;
+    }
+
+    public String getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
+    }
+
+    public String getLocationMode() {
+        return locationMode;
+    }
+
+    public void setLocationMode(String locationMode) {
+        this.locationMode = locationMode;
     }
 
     public String getPostedByUserId() {

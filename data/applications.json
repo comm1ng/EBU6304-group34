@@ -5,8 +5,8 @@
     "taUserId": "U001",
     "status": "PENDING",
     "appliedAt": "2026-04-01T10:00:00",
-    "reviewedAt": null,
-    "reviewedByUserId": null
+    "reviewedAt": "2026-04-10T19:36:57.675192600",
+    "reviewedByUserId": "U101"
   },
   {
     "id": "A002",
@@ -22,8 +22,15 @@
     "jobId": "J003",
     "taUserId": "U151",
     "status": "PENDING",
-    "appliedAt": "2026-04-04T16:10:00",
-    "reviewedAt": null,
-    "reviewedByUserId": null
+    "appliedAt": "2026-04-04T16:10:00"
+  },
+  {
+    "id": "A004",
+    "jobId": "J004",
+    "taUserId": "U002",
+    "status": "REJECTED",
+    "appliedAt": "2026-03-29T12:00:00",
+    "reviewedAt": "2026-03-31T18:00:00",
+    "reviewedByUserId": "U102"
   }
 ]
