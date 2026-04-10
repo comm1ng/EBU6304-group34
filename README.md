@@ -94,6 +94,15 @@ This project aims to build a streamlined TA recruitment system using Agile metho
 - Admin
 >>>>>>> Stashed changes
 
+## Team Members (Updated)
+- Github account:qmid(Lead/Member)
+- qrsikno2: 190898878(Support TA)
+- Utopianing:231221892(Member)
+- comm1ng:231221467(Lead)
+- Shanyu6:231220105(Member)
+- ZXZ1219:231221146(Member)
+- zpz999:231222958(Member)
+
 ## Tech Stack
 - Java 17
 - Maven
