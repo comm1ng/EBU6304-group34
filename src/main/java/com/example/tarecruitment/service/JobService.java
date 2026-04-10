@@ -20,6 +20,16 @@ public class JobService {
     }
 
     public Job postJob(String title, String description, String requiredSkillsCsv, int hoursPerWeek, String postedByUserId) {
+        return postJob(title, description, requiredSkillsCsv, hoursPerWeek, "", "", postedByUserId);
+    }
+
+    public Job postJob(String title,
+                       String description,
+                       String requiredSkillsCsv,
+                       int hoursPerWeek,
+                       String deadline,
+                       String locationMode,
+                       String postedByUserId) {
         ValidationUtil.requireNotBlank(postedByUserId, "Posted by user");
         ValidationUtil.requireNotBlank(title, "Job title");
         ValidationUtil.requireNotBlank(description, "Job description");
@@ -30,16 +40,36 @@ public class JobService {
         List<Job> jobs = jobRepository.findAll();
         String nextId = IdGenerator.nextId("J", jobs.stream().map(Job::getId).collect(Collectors.toList()));
 
-        Job job = new Job(nextId, title.trim(), description.trim(), CsvUtil.parseCommaSeparated(requiredSkillsCsv),
-                hoursPerWeek, postedByUserId, JobStatus.OPEN, LocalDateTime.now().toString());
+        Job job = new Job(
+                nextId,
+                title.trim(),
+                description.trim(),
+                CsvUtil.parseCommaSeparated(requiredSkillsCsv),
+                hoursPerWeek,
+                ValidationUtil.safeTrim(deadline),
+                ValidationUtil.safeTrim(locationMode),
+                postedByUserId,
+                JobStatus.OPEN,
+                LocalDateTime.now().toString()
+        );
 
         jobRepository.add(job);
         return job;
     }
 
     public List<Job> getOpenJobs() {
+        return searchOpenJobs("", "");
+    }
+
+    public List<Job> searchOpenJobs(String query, String locationMode) {
+        String normalizedQuery = ValidationUtil.safeTrim(query).toLowerCase();
+        String normalizedMode = ValidationUtil.safeTrim(locationMode).toLowerCase();
+
         return jobRepository.findAll().stream()
                 .filter(job -> job.getStatus() == JobStatus.OPEN)
+                .filter(job -> normalizedMode.isBlank()
+                        || (job.getLocationMode() != null && job.getLocationMode().toLowerCase().contains(normalizedMode)))
+                .filter(job -> normalizedQuery.isBlank() || matchesQuery(job, normalizedQuery))
                 .collect(Collectors.toList());
     }
 
@@ -61,5 +91,22 @@ public class JobService {
 
         job.setStatus(status);
         jobRepository.update(job);
+    }
+
+    private boolean matchesQuery(Job job, String normalizedQuery) {
+        if (containsIgnoreCase(job.getTitle(), normalizedQuery)) {
+            return true;
+        }
+        if (containsIgnoreCase(job.getDescription(), normalizedQuery)) {
+            return true;
+        }
+        if (containsIgnoreCase(job.getLocationMode(), normalizedQuery)) {
+            return true;
+        }
+        return job.getRequiredSkills().stream().anyMatch(skill -> containsIgnoreCase(skill, normalizedQuery));
+    }
+
+    private boolean containsIgnoreCase(String source, String normalizedQuery) {
+        return source != null && source.toLowerCase().contains(normalizedQuery);
     }
 }

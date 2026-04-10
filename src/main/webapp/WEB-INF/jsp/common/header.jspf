@@ -6,70 +6,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TA Recruitment System</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+    <title>BUPT International School TA Recruitment</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/base.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/layout.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages.css">
+    <script defer src="${pageContext.request.contextPath}/assets/js/app.js"></script>
 </head>
-<body>
-<header class="topbar">
-    <div class="brand">
-        <div class="brand-mark">BUPT</div>
-        <div>
-            <div class="brand-title">International School TA Recruitment</div>
-            <div class="brand-subtitle">Servlet/JSP Coursework System</div>
+<body class="app-body">
+<header class="app-header">
+    <a class="brand-block" href="${pageContext.request.contextPath}/">
+        <img class="brand-logo" src="${pageContext.request.contextPath}/assets/images/bupt-is-logo.png" alt="BUPT International School Logo">
+        <div class="brand-text">
+            <p class="brand-overline">BUPT International School</p>
+            <h1>Teaching Assistant Recruitment Platform</h1>
         </div>
-    </div>
+    </a>
 
-    <nav class="nav-links">
+    <div class="header-actions">
         <c:choose>
             <c:when test="${currentUser == null}">
-                <a href="${pageContext.request.contextPath}/login">Login</a>
-                <a href="${pageContext.request.contextPath}/register">Register</a>
+                <a class="text-action" href="${pageContext.request.contextPath}/login">Login</a>
+                <a class="text-action" href="${pageContext.request.contextPath}/register">Register</a>
             </c:when>
             <c:otherwise>
-                <a href="${pageContext.request.contextPath}/dashboard">Dashboard</a>
-                <c:if test="${activeRole == 'TA'}">
-                    <a href="${pageContext.request.contextPath}/jobs">Jobs</a>
-                    <a href="${pageContext.request.contextPath}/my-applications">My Applications</a>
-                </c:if>
-                <c:if test="${activeRole == 'MO'}">
-                    <a href="${pageContext.request.contextPath}/mo/post-job">Post Job</a>
-                </c:if>
-                <c:if test="${activeRole == 'ADMIN'}">
-                    <a href="${pageContext.request.contextPath}/admin/dashboard">Workload</a>
-                </c:if>
-                <c:if test="${activeRole == 'TA' || activeRole == 'MO'}">
-                    <a href="${pageContext.request.contextPath}/profile">Profile</a>
+                <div class="session-user">
+                    <strong>${currentUser.fullName}</strong>
+                    <span>${currentUser.email}</span>
+                </div>
+                <c:if test="${not empty activeRole}">
+                    <span class="badge badge-role">${activeRole}</span>
                 </c:if>
                 <c:if test="${hasMultipleRoles}">
-                    <a href="${pageContext.request.contextPath}/role-select">Switch Role</a>
+                    <a class="text-action" href="${pageContext.request.contextPath}/role-select">Switch Role</a>
                 </c:if>
                 <form method="post" action="${pageContext.request.contextPath}/logout" class="inline-form">
-                    <button class="btn btn-outline" type="submit">Logout</button>
+                    <button class="btn btn-secondary" type="submit">Logout</button>
                 </form>
             </c:otherwise>
         </c:choose>
-    </nav>
+    </div>
 </header>
 
-<main class="page-shell">
-    <c:if test="${not empty currentUser}">
-        <div class="session-strip">
-            <span>Signed in as <strong>${currentUser.fullName}</strong> (${currentUser.username})</span>
-            <c:if test="${not empty activeRole}">
-                <span class="role-chip">${activeRole}</span>
-            </c:if>
-        </div>
+<div class="app-shell">
+    <c:if test="${currentUser != null}">
+        <aside class="sidebar">
+            <div class="sidebar-title">Workspace</div>
+            <nav class="sidebar-nav">
+                <a class="nav-item" href="${pageContext.request.contextPath}/dashboard">Dashboard</a>
+
+                <c:if test="${activeRole == 'TA'}">
+                    <a class="nav-item" href="${pageContext.request.contextPath}/jobs">Available Jobs</a>
+                    <a class="nav-item" href="${pageContext.request.contextPath}/my-applications">My Applications</a>
+                    <a class="nav-item" href="${pageContext.request.contextPath}/profile">My Profile</a>
+                </c:if>
+
+                <c:if test="${activeRole == 'MO'}">
+                    <a class="nav-item" href="${pageContext.request.contextPath}/mo/post-job">Post Job</a>
+                    <a class="nav-item" href="${pageContext.request.contextPath}/mo/manage-jobs">Manage Jobs</a>
+                    <a class="nav-item" href="${pageContext.request.contextPath}/profile">My Profile</a>
+                </c:if>
+
+                <c:if test="${activeRole == 'ADMIN'}">
+                    <a class="nav-item" href="${pageContext.request.contextPath}/admin/dashboard">Admin Dashboard</a>
+                    <a class="nav-item" href="${pageContext.request.contextPath}/admin/system-overview">System Overview</a>
+                    <a class="nav-item" href="${pageContext.request.contextPath}/admin/workload-summary">Workload Summary</a>
+                    <a class="nav-item" href="${pageContext.request.contextPath}/admin/user-management">User Directory</a>
+                </c:if>
+            </nav>
+        </aside>
     </c:if>
 
-    <c:if test="${not empty flashSuccess}">
-        <div class="alert alert-success">${flashSuccess}</div>
-    </c:if>
-    <c:if test="${not empty flashError}">
-        <div class="alert alert-error">${flashError}</div>
-    </c:if>
-    <c:if test="${not empty error}">
-        <div class="alert alert-error">${error}</div>
-    </c:if>
-    <c:if test="${not empty info}">
-        <div class="alert alert-info">${info}</div>
-    </c:if>
+    <main class="content-area">
+        <c:if test="${not empty flashSuccess}">
+            <div class="alert alert-success">${flashSuccess}</div>
+        </c:if>
+        <c:if test="${not empty flashError}">
+            <div class="alert alert-error">${flashError}</div>
+        </c:if>
+        <c:if test="${not empty error}">
+            <div class="alert alert-error">${error}</div>
+        </c:if>
+        <c:if test="${not empty info}">
+            <div class="alert alert-info">${info}</div>
+        </c:if>
+
