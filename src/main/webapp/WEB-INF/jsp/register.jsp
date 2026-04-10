@@ -1,10 +1,10 @@
 <%@ include file="common/header.jspf" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<section class="auth-page single-column">
-    <article class="card auth-card wide">
-        <h2>Create Account</h2>
-        <p class="text-muted">Self-registration is available for TA and MO only. Admin accounts are predefined by the system.</p>
+<section class="auth-wrapper">
+    <div class="card auth-card wide">
+        <h1>Register</h1>
+        <p class="muted">Self-registration is open for TA and MO only. Admin accounts are predefined.</p>
 
         <c:if test="${confirmRequired}">
             <div class="alert alert-warning">
@@ -22,26 +22,26 @@
             <label for="username">Username</label>
             <input id="username" name="username" type="text" value="${username}" required>
 
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" minlength="6" required>
+            <label for="password">Password (min 6 chars)</label>
+            <input id="password" name="password" type="password" required>
 
             <label for="role">Role</label>
-            <select id="role" name="role" data-toggle-workunit="true" required>
+            <select id="role" name="role" required>
                 <option value="">Select role</option>
-                <option value="TA" <c:if test="${role == 'TA'}">selected</c:if>>Teaching Assistant (TA)</option>
-                <option value="MO" <c:if test="${role == 'MO'}">selected</c:if>>Module Organiser (MO)</option>
+                <option value="TA" <c:if test="${role == 'TA'}">selected</c:if>>TA</option>
+                <option value="MO" <c:if test="${role == 'MO'}">selected</c:if>>MO</option>
             </select>
 
-            <div id="workUnitBlock" class="field-group">
-                <label for="workUnit">Work Unit / Organisation (MO Required)</label>
-                <input id="workUnit" name="workUnit" type="text" value="${workUnit}" placeholder="e.g. BUPT International School">
+            <div id="workUnitRow">
+                <label for="workUnit">Work Unit / Organisation (MO required)</label>
+                <input id="workUnit" name="workUnit" type="text" value="${workUnit}">
             </div>
 
             <c:choose>
                 <c:when test="${confirmRequired}">
                     <div class="button-row">
-                        <button class="btn" type="submit" name="confirmDecision" value="continue">Yes, Continue</button>
-                        <button class="btn btn-secondary" type="submit" name="confirmDecision" value="cancel">Cancel</button>
+                        <button class="btn" type="submit" name="confirmDecision" value="continue">Continue Registration</button>
+                        <button class="btn btn-outline" type="submit" name="confirmDecision" value="cancel">Cancel</button>
                     </div>
                 </c:when>
                 <c:otherwise>
@@ -50,9 +50,23 @@
             </c:choose>
         </form>
 
-        <p class="helper-link">Already registered? <a href="${pageContext.request.contextPath}/login">Back to login</a></p>
-    </article>
+        <p class="mt-16">Already have an account? <a href="${pageContext.request.contextPath}/login">Back to login</a></p>
+    </div>
 </section>
 
-<%@ include file="common/footer.jspf" %>
+<script>
+    (function () {
+        const roleSelect = document.getElementById('role');
+        const workUnitRow = document.getElementById('workUnitRow');
+        const workUnitInput = document.getElementById('workUnit');
+        function toggleWorkUnit() {
+            const isMo = roleSelect.value === 'MO';
+            workUnitRow.style.display = isMo ? 'block' : 'none';
+            workUnitInput.required = isMo;
+        }
+        roleSelect.addEventListener('change', toggleWorkUnit);
+        toggleWorkUnit();
+    })();
+</script>
 
+<%@ include file="common/footer.jspf" %>

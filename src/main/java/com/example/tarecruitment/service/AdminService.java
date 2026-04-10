@@ -3,7 +3,6 @@ package com.example.tarecruitment.service;
 import com.example.tarecruitment.model.ApplicationStatus;
 import com.example.tarecruitment.model.Job;
 import com.example.tarecruitment.model.JobApplication;
-import com.example.tarecruitment.model.JobStatus;
 import com.example.tarecruitment.model.Role;
 import com.example.tarecruitment.model.SystemStats;
 import com.example.tarecruitment.model.User;
@@ -79,17 +78,13 @@ public class AdminService {
 
     public SystemStats getSystemStats() {
         List<User> users = userRepository.findAll();
-        List<Job> jobs = jobRepository.findAll();
-        List<JobApplication> applications = applicationRepository.findAll();
         return new SystemStats(
                 users.size(),
                 (int) users.stream().filter(user -> user.hasRole(Role.TA)).count(),
                 (int) users.stream().filter(user -> user.hasRole(Role.MO)).count(),
                 (int) users.stream().filter(user -> user.hasRole(Role.ADMIN)).count(),
-                jobs.size(),
-                (int) jobs.stream().filter(job -> job.getStatus() == JobStatus.OPEN).count(),
-                applications.size(),
-                (int) applications.stream().filter(app -> app.getStatus() == ApplicationStatus.ACCEPTED).count()
+                jobRepository.findAll().size(),
+                applicationRepository.findAll().size()
         );
     }
 }

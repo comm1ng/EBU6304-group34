@@ -1,39 +1,33 @@
 <%@ include file="common/header.jspf" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<section class="page-head">
-    <h2>Admin Dashboard</h2>
-    <p class="text-muted">Monitor platform health, TA workload, and recruitment outcomes.</p>
+<section class="page-header">
+    <h1>Admin Dashboard</h1>
+    <p class="muted">Monitor TA workload and system-wide recruitment activity.</p>
 </section>
 
-<section class="stats-grid">
-    <article class="metric-card">
-        <p class="metric-label">Total Users</p>
-        <p class="metric-value">${stats.totalUsers}</p>
-        <span class="text-muted">TA ${stats.totalTaUsers} | MO ${stats.totalMoUsers} | Admin ${stats.totalAdminUsers}</span>
+<section class="card-grid">
+    <article class="card stat-card">
+        <h3>Total Users</h3>
+        <p class="stat-number">${stats.totalUsers}</p>
+        <p class="muted">TA ${stats.totalTaUsers} · MO ${stats.totalMoUsers} · Admin ${stats.totalAdminUsers}</p>
     </article>
-    <article class="metric-card">
-        <p class="metric-label">Total Jobs</p>
-        <p class="metric-value">${stats.totalJobs}</p>
-        <span class="text-muted">Open: ${stats.openJobs}</span>
+    <article class="card stat-card">
+        <h3>Total Jobs</h3>
+        <p class="stat-number">${stats.totalJobs}</p>
     </article>
-    <article class="metric-card">
-        <p class="metric-label">Total Applications</p>
-        <p class="metric-value">${stats.totalApplications}</p>
-        <span class="text-muted">Accepted: ${stats.acceptedApplications}</span>
+    <article class="card stat-card">
+        <h3>Total Applications</h3>
+        <p class="stat-number">${stats.totalApplications}</p>
     </article>
 </section>
 
 <section class="card">
-    <div class="card-header-row">
-        <h3>Top Workload Snapshot</h3>
-        <a href="${pageContext.request.contextPath}/admin/workload-summary">Open full workload summary</a>
-    </div>
-
-    <table class="table">
+    <h2>TA Workload Summary</h2>
+    <table class="data-table">
         <thead>
         <tr>
-            <th>TA ID</th>
+            <th>TA User ID</th>
             <th>Name</th>
             <th>Accepted Jobs</th>
             <th>Total Hours/Week</th>
@@ -41,7 +35,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${summaries}" var="item" end="4">
+        <c:forEach items="${summaries}" var="item">
             <tr>
                 <td>${item.taUserId}</td>
                 <td>${item.taName}</td>
@@ -52,7 +46,7 @@
         </c:forEach>
         <c:if test="${empty summaries}">
             <tr>
-                <td colspan="5"><div class="empty-state"><strong>No workload data yet.</strong></div></td>
+                <td colspan="5">No TA workload data available.</td>
             </tr>
         </c:if>
         </tbody>
@@ -60,4 +54,3 @@
 </section>
 
 <%@ include file="common/footer.jspf" %>
-

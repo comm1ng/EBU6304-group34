@@ -32,20 +32,10 @@ public class PostJobServlet extends BaseServlet {
         String description = ValidationUtil.safeTrim(request.getParameter("description"));
         String requiredSkills = ValidationUtil.safeTrim(request.getParameter("requiredSkills"));
         String hoursPerWeekText = ValidationUtil.safeTrim(request.getParameter("hoursPerWeek"));
-        String deadline = ValidationUtil.safeTrim(request.getParameter("deadline"));
-        String locationMode = ValidationUtil.safeTrim(request.getParameter("locationMode"));
 
         try {
             int hoursPerWeek = ValidationUtil.parsePositiveInteger(hoursPerWeekText, "Hours per week");
-            container().getJobService().postJob(
-                    title,
-                    description,
-                    requiredSkills,
-                    hoursPerWeek,
-                    deadline,
-                    locationMode,
-                    user.getId()
-            );
+            container().getJobService().postJob(title, description, requiredSkills, hoursPerWeek, user.getId());
             setFlashSuccess(request, "Job posted successfully.");
             redirect(response, request, "/mo/dashboard");
             return;
@@ -55,8 +45,6 @@ public class PostJobServlet extends BaseServlet {
             request.setAttribute("description", description);
             request.setAttribute("requiredSkills", requiredSkills);
             request.setAttribute("hoursPerWeek", hoursPerWeekText);
-            request.setAttribute("deadline", deadline);
-            request.setAttribute("locationMode", locationMode);
             forward(request, response, "postJob.jsp", user, Role.MO);
         }
     }

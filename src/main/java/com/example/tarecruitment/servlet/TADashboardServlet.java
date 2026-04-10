@@ -4,7 +4,6 @@ import com.example.tarecruitment.model.ApplicationStatus;
 import com.example.tarecruitment.model.Job;
 import com.example.tarecruitment.model.JobApplication;
 import com.example.tarecruitment.model.Role;
-import com.example.tarecruitment.model.TAProfile;
 import com.example.tarecruitment.model.User;
 
 import javax.servlet.ServletException;
@@ -32,25 +31,6 @@ public class TADashboardServlet extends BaseServlet {
         long rejectedCount = myApplications.stream().filter(a -> a.getStatus() == ApplicationStatus.REJECTED).count();
 
         List<JobApplication> latestApplications = myApplications.stream().limit(5).collect(Collectors.toList());
-        TAProfile profile = container().getProfileService().getOrCreateTaProfile(user.getId());
-        int completedFields = 0;
-        if (profile.getMajor() != null && !profile.getMajor().isBlank()) {
-            completedFields++;
-        }
-        if (profile.getAcademicYear() != null && !profile.getAcademicYear().isBlank()) {
-            completedFields++;
-        }
-        if (!profile.getSkills().isEmpty()) {
-            completedFields++;
-        }
-        if ((profile.getCvFilePath() != null && !profile.getCvFilePath().isBlank())
-                || (profile.getCvSummary() != null && !profile.getCvSummary().isBlank())) {
-            completedFields++;
-        }
-        if (profile.getExperience() != null && !profile.getExperience().isBlank()) {
-            completedFields++;
-        }
-        int profileCompleteness = completedFields * 20;
 
         request.setAttribute("openJobsCount", openJobs.size());
         request.setAttribute("myApplicationsCount", myApplications.size());
@@ -58,7 +38,6 @@ public class TADashboardServlet extends BaseServlet {
         request.setAttribute("acceptedCount", acceptedCount);
         request.setAttribute("rejectedCount", rejectedCount);
         request.setAttribute("latestApplications", latestApplications);
-        request.setAttribute("profileCompleteness", profileCompleteness);
 
         forward(request, response, "taDashboard.jsp", user, Role.TA);
     }

@@ -5,7 +5,6 @@ import com.example.tarecruitment.model.Job;
 import com.example.tarecruitment.model.JobApplication;
 import com.example.tarecruitment.model.JobStatus;
 import com.example.tarecruitment.model.Role;
-import com.example.tarecruitment.model.SystemStats;
 import com.example.tarecruitment.model.User;
 import com.example.tarecruitment.model.WorkloadSummary;
 import com.example.tarecruitment.storage.ApplicationRepository;
@@ -62,18 +61,5 @@ class AdminServiceTest {
         assertEquals(1, summary.getAcceptedJobs());
         assertEquals(6, summary.getTotalHoursPerWeek());
         assertEquals(1, summary.getPendingApplications());
-    }
-
-    @Test
-    void systemStatsShouldIncludeOpenJobsAndAcceptedApplications() {
-        SystemStats stats = adminService.getSystemStats();
-
-        assertEquals(2, stats.getTotalUsers());
-        assertEquals(1, stats.getTotalTaUsers());
-        assertEquals(1, stats.getTotalMoUsers());
-        assertEquals(2, stats.getTotalJobs());
-        assertEquals(2, stats.getOpenJobs());
-        assertEquals(2, stats.getTotalApplications());
-        assertEquals(1, stats.getAcceptedApplications());
     }
 }

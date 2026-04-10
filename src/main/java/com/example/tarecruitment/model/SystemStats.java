@@ -6,26 +6,18 @@ public class SystemStats {
     private int totalMoUsers;
     private int totalAdminUsers;
     private int totalJobs;
-    private int openJobs;
     private int totalApplications;
-    private int acceptedApplications;
 
     public SystemStats() {
     }
 
     public SystemStats(int totalUsers, int totalTaUsers, int totalMoUsers, int totalAdminUsers, int totalJobs, int totalApplications) {
-        this(totalUsers, totalTaUsers, totalMoUsers, totalAdminUsers, totalJobs, 0, totalApplications, 0);
-    }
-
-    public SystemStats(int totalUsers, int totalTaUsers, int totalMoUsers, int totalAdminUsers, int totalJobs, int openJobs, int totalApplications, int acceptedApplications) {
         this.totalUsers = totalUsers;
         this.totalTaUsers = totalTaUsers;
         this.totalMoUsers = totalMoUsers;
         this.totalAdminUsers = totalAdminUsers;
         this.totalJobs = totalJobs;
-        this.openJobs = openJobs;
         this.totalApplications = totalApplications;
-        this.acceptedApplications = acceptedApplications;
     }
 
     public int getTotalUsers() {
@@ -68,27 +60,11 @@ public class SystemStats {
         this.totalJobs = totalJobs;
     }
 
-    public int getOpenJobs() {
-        return openJobs;
-    }
-
-    public void setOpenJobs(int openJobs) {
-        this.openJobs = openJobs;
-    }
-
     public int getTotalApplications() {
         return totalApplications;
     }
 
     public void setTotalApplications(int totalApplications) {
         this.totalApplications = totalApplications;
-    }
-
-    public int getAcceptedApplications() {
-        return acceptedApplications;
-    }
-
-    public void setAcceptedApplications(int acceptedApplications) {
-        this.acceptedApplications = acceptedApplications;
     }
 }

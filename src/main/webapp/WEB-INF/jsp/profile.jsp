@@ -1,15 +1,13 @@
 <%@ include file="common/header.jspf" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<section class="page-head">
-    <h2>Profile Management</h2>
-    <p class="text-muted">Maintain identity information and your role-specific profile details.</p>
+<section class="page-header">
+    <h1>My Profile</h1>
+    <p class="muted">Maintain your personal details and role-specific profile information.</p>
 </section>
 
-<section class="card max-card">
+<section class="card max-820">
     <form method="post" action="${pageContext.request.contextPath}/profile" class="form-grid">
-        <h3>Basic Information</h3>
-
         <label for="fullName">Full Name</label>
         <input id="fullName" name="fullName" type="text" value="${currentUser.fullName}" required>
 
@@ -17,8 +15,6 @@
         <input id="email" name="email" type="email" value="${currentUser.email}" required>
 
         <c:if test="${activeRole == 'TA'}">
-            <h3>TA Profile</h3>
-
             <label for="major">Major</label>
             <input id="major" name="major" type="text" value="${taProfile.major}">
 
@@ -39,15 +35,13 @@
         </c:if>
 
         <c:if test="${activeRole == 'MO'}">
-            <h3>MO Profile</h3>
-
             <label for="workUnit">Work Unit / Organisation</label>
             <input id="workUnit" name="workUnit" type="text" value="${moProfile.workUnit}" required>
 
-            <label for="title">Position Title</label>
+            <label for="title">Job Title</label>
             <input id="title" name="title" type="text" value="${moProfile.title}">
 
-            <label for="bio">Bio</label>
+            <label for="bio">Bio / Description</label>
             <textarea id="bio" name="bio" rows="4">${moProfile.bio}</textarea>
         </c:if>
 
@@ -56,4 +50,3 @@
 </section>
 
 <%@ include file="common/footer.jspf" %>
-

@@ -1,21 +1,21 @@
 <%@ include file="common/header.jspf" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<section class="page-head">
-    <h2>My Applications</h2>
-    <p class="text-muted">Review all submitted applications and latest decisions.</p>
+<section class="page-header">
+    <h1>My Applications</h1>
+    <p class="muted">Track application status for all jobs you applied to.</p>
 </section>
 
 <section class="card">
-    <table class="table">
+    <table class="data-table">
         <thead>
         <tr>
             <th>Application ID</th>
             <th>Job</th>
+            <th>Hours/Week</th>
             <th>Status</th>
             <th>Applied At</th>
             <th>Reviewed At</th>
-            <th>Timeline</th>
         </tr>
         </thead>
         <tbody>
@@ -26,15 +26,22 @@
                 <td>
                     <c:choose>
                         <c:when test="${not empty job}">
-                            <strong>${job.title}</strong>
-                            <p class="cell-sub">${job.hoursPerWeek} hrs/week | ${job.locationMode}</p>
+                            ${job.title} (${job.id})
                         </c:when>
                         <c:otherwise>
                             Unknown Job (${app.jobId})
                         </c:otherwise>
                     </c:choose>
                 </td>
-                <td><span class="badge badge-${app.status}">${app.status}</span></td>
+                <td>
+                    <c:choose>
+                        <c:when test="${not empty job}">
+                            ${job.hoursPerWeek}
+                        </c:when>
+                        <c:otherwise>-</c:otherwise>
+                    </c:choose>
+                </td>
+                <td><span class="status ${app.status}">${app.status}</span></td>
                 <td>${app.appliedAt}</td>
                 <td>
                     <c:choose>
@@ -42,36 +49,11 @@
                         <c:otherwise>${app.reviewedAt}</c:otherwise>
                     </c:choose>
                 </td>
-                <td>
-                    <div class="timeline-mini">
-                        <span class="dot done"></span><span>Submitted</span>
-                        <span class="arrow">-&gt;</span>
-                        <c:choose>
-                            <c:when test="${app.status == 'PENDING'}">
-                                <span class="dot wait"></span>
-                            </c:when>
-                            <c:otherwise>
-                                <span class="dot done"></span>
-                            </c:otherwise>
-                        </c:choose>
-                        <span>
-                            <c:choose>
-                                <c:when test="${app.status == 'PENDING'}">Under Review</c:when>
-                                <c:otherwise>Decision Made</c:otherwise>
-                            </c:choose>
-                        </span>
-                    </div>
-                </td>
             </tr>
         </c:forEach>
         <c:if test="${empty myApplications}">
             <tr>
-                <td colspan="6">
-                    <div class="empty-state">
-                        <strong>No applications submitted yet</strong>
-                        <p>Go to Available Jobs and apply to positions that match your skills.</p>
-                    </div>
-                </td>
+                <td colspan="6">No applications submitted yet.</td>
             </tr>
         </c:if>
         </tbody>
@@ -79,4 +61,3 @@
 </section>
 
 <%@ include file="common/footer.jspf" %>
-
