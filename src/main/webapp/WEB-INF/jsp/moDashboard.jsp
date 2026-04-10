@@ -1,40 +1,48 @@
 <%@ include file="common/header.jspf" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<section class="page-header">
-    <h1>MO Dashboard</h1>
-    <p class="muted">Post jobs and manage applicants for your modules or activities.</p>
+<section class="page-head">
+    <h2>MO Dashboard</h2>
+    <p class="text-muted">Post positions, manage job lifecycle, and review applicants.</p>
 </section>
 
-<section class="card-grid">
-    <article class="card stat-card">
-        <h3>My Jobs</h3>
-        <p class="stat-number">${myJobsCount}</p>
+<section class="stats-grid">
+    <article class="metric-card">
+        <p class="metric-label">My Jobs</p>
+        <p class="metric-value">${myJobsCount}</p>
     </article>
-    <article class="card stat-card">
-        <h3>Open Jobs</h3>
-        <p class="stat-number">${openJobsCount}</p>
+    <article class="metric-card">
+        <p class="metric-label">Open Jobs</p>
+        <p class="metric-value">${openJobsCount}</p>
     </article>
-    <article class="card stat-card">
-        <h3>Pending Applicants</h3>
-        <p class="stat-number">${pendingApplicants}</p>
+    <article class="metric-card">
+        <p class="metric-label">Pending Applicants</p>
+        <p class="metric-value">${pendingApplicants}</p>
     </article>
-    <article class="card stat-card">
-        <h3>Quick Action</h3>
-        <a class="btn mt-8" href="${pageContext.request.contextPath}/mo/post-job">Post New Job</a>
+    <article class="metric-card">
+        <p class="metric-label">Actions</p>
+        <div class="stack-actions">
+            <a href="${pageContext.request.contextPath}/mo/post-job">Post New Job</a>
+            <a href="${pageContext.request.contextPath}/mo/manage-jobs">Manage Existing Jobs</a>
+        </div>
     </article>
 </section>
 
 <section class="card">
-    <h2>Jobs Posted By You</h2>
-    <table class="data-table">
+    <div class="card-header-row">
+        <h3>Recently Posted Jobs</h3>
+        <a href="${pageContext.request.contextPath}/mo/manage-jobs">Go to job management</a>
+    </div>
+
+    <table class="table">
         <thead>
         <tr>
             <th>Job ID</th>
             <th>Title</th>
             <th>Hours/Week</th>
+            <th>Deadline</th>
             <th>Status</th>
-            <th>Actions</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -43,15 +51,19 @@
                 <td>${job.id}</td>
                 <td>${job.title}</td>
                 <td>${job.hoursPerWeek}</td>
-                <td><span class="status ${job.status}">${job.status}</span></td>
-                <td>
-                    <a class="text-link" href="${pageContext.request.contextPath}/mo/manage-applicants?jobId=${job.id}">Manage Applicants</a>
-                </td>
+                <td>${job.deadline}</td>
+                <td><span class="badge badge-${job.status}">${job.status}</span></td>
+                <td><a href="${pageContext.request.contextPath}/mo/manage-applicants?jobId=${job.id}">View Applicants</a></td>
             </tr>
         </c:forEach>
         <c:if test="${empty myJobs}">
             <tr>
-                <td colspan="5">No jobs posted yet.</td>
+                <td colspan="6">
+                    <div class="empty-state">
+                        <strong>No jobs posted yet</strong>
+                        <p>Create your first TA position to start receiving applications.</p>
+                    </div>
+                </td>
             </tr>
         </c:if>
         </tbody>
@@ -59,3 +71,4 @@
 </section>
 
 <%@ include file="common/footer.jspf" %>
+
