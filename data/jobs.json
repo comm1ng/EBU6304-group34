@@ -1,0 +1,41 @@
+[
+  {
+    "id": "J001",
+    "title": "Java Programming TA",
+    "description": "Support Java lab sessions and answer student questions.",
+    "requiredSkills": [
+      "Java",
+      "Communication"
+    ],
+    "hoursPerWeek": 6,
+    "postedByUserId": "U101",
+    "status": "OPEN",
+    "createdAt": "2026-04-01T09:00:00"
+  },
+  {
+    "id": "J002",
+    "title": "Exam Invigilation Assistant",
+    "description": "Support invigilation and attendance checking.",
+    "requiredSkills": [
+      "Responsibility",
+      "Punctuality"
+    ],
+    "hoursPerWeek": 4,
+    "postedByUserId": "U101",
+    "status": "OPEN",
+    "createdAt": "2026-04-02T11:00:00"
+  },
+  {
+    "id": "J003",
+    "title": "Programming Workshop Assistant",
+    "description": "Help organise coding workshop sessions.",
+    "requiredSkills": [
+      "Python",
+      "Presentation"
+    ],
+    "hoursPerWeek": 5,
+    "postedByUserId": "U151",
+    "status": "OPEN",
+    "createdAt": "2026-04-03T14:00:00"
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "A001",
+    "jobId": "J001",
+    "taUserId": "U001",
+    "status": "PENDING",
+    "appliedAt": "2026-04-01T10:00:00",
+    "reviewedAt": null,
+    "reviewedByUserId": null
+  },
+  {
+    "id": "A002",
+    "jobId": "J002",
+    "taUserId": "U001",
+    "status": "ACCEPTED",
+    "appliedAt": "2026-04-02T13:20:00",
+    "reviewedAt": "2026-04-03T09:00:00",
+    "reviewedByUserId": "U101"
+  },
+  {
+    "id": "A003",
+    "jobId": "J003",
+    "taUserId": "U151",
+    "status": "PENDING",
+    "appliedAt": "2026-04-04T16:10:00",
+    "reviewedAt": null,
+    "reviewedByUserId": null
+  }
+]
