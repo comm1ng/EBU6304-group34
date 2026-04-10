@@ -8,6 +8,8 @@
       "Communication"
     ],
     "hoursPerWeek": 6,
+    "deadline": "2026-06-20",
+    "locationMode": "On-campus",
     "postedByUserId": "U101",
     "status": "OPEN",
     "createdAt": "2026-04-01T09:00:00"
@@ -21,6 +23,8 @@
       "Punctuality"
     ],
     "hoursPerWeek": 4,
+    "deadline": "2026-05-30",
+    "locationMode": "On-campus",
     "postedByUserId": "U101",
     "status": "OPEN",
     "createdAt": "2026-04-02T11:00:00"
@@ -34,8 +38,39 @@
       "Presentation"
     ],
     "hoursPerWeek": 5,
+    "deadline": "2026-06-10",
+    "locationMode": "Hybrid",
     "postedByUserId": "U151",
     "status": "OPEN",
     "createdAt": "2026-04-03T14:00:00"
+  },
+  {
+    "id": "J004",
+    "title": "Academic Writing Support TA",
+    "description": "Assist students in academic writing clinics.",
+    "requiredSkills": [
+      "Academic Writing",
+      "English"
+    ],
+    "hoursPerWeek": 3,
+    "deadline": "2026-05-25",
+    "locationMode": "Online",
+    "postedByUserId": "U102",
+    "status": "CLOSED",
+    "createdAt": "2026-03-28T10:30:00"
+  },
+  {
+    "id": "J005",
+    "title": "123456",
+    "description": "d\u0027de\u0027de",
+    "requiredSkills": [
+      "å®¿èç"
+    ],
+    "hoursPerWeek": 2,
+    "deadline": "2026-04-01",
+    "locationMode": "On-campus",
+    "postedByUserId": "U101",
+    "status": "OPEN",
+    "createdAt": "2026-04-10T19:35:21.178592900"
   }
 ]
