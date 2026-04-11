@@ -1,5 +1,6 @@
 <%@ include file="common/header.jspf" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <section class="page-head">
     <h2>Profile Management</h2>
@@ -7,7 +8,7 @@
 </section>
 
 <section class="card max-card">
-    <form method="post" action="${pageContext.request.contextPath}/profile" class="form-grid">
+    <form method="post" action="${pageContext.request.contextPath}/profile" class="form-grid" enctype="multipart/form-data">
         <h3>Basic Information</h3>
 
         <label for="fullName">Full Name</label>
@@ -26,10 +27,18 @@
             <input id="academicYear" name="academicYear" type="text" value="${taProfile.academicYear}" placeholder="Year 2 / Year 3">
 
             <label for="skills">Skills (comma separated)</label>
-            <input id="skills" name="skills" type="text" value="${taProfile.skills}">
+            <input id="skills" name="skills" type="text" value="${fn:join(taProfile.skills, ', ')}">
 
-            <label for="cvFilePath">CV File Path</label>
-            <input id="cvFilePath" name="cvFilePath" type="text" value="${taProfile.cvFilePath}" placeholder="docs/cv/your_cv.pdf">
+            <label for="cvFilePath">CV File Path (Auto-generated after upload)</label>
+            <input id="cvFilePath" type="text" value="${taProfile.cvFilePath}" readonly>
+
+            <label for="cvFile">Upload CV File (PDF/DOC/DOCX)</label>
+            <input id="cvFile" name="cvFile" type="file" accept=".pdf,.doc,.docx">
+
+            <c:if test="${not empty taProfile.cvFilePath}">
+                <p class="cell-sub">Current CV: ${taProfile.cvFilePath}</p>
+                <a href="${pageContext.request.contextPath}/cv-file?taUserId=${currentUser.id}" target="_blank">View / Download Current CV</a>
+            </c:if>
 
             <label for="cvSummary">CV Summary</label>
             <textarea id="cvSummary" name="cvSummary" rows="3">${taProfile.cvSummary}</textarea>

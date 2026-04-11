@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public abstract class BaseServlet extends HttpServlet {
@@ -123,6 +125,20 @@ public abstract class BaseServlet extends HttpServlet {
             request.setAttribute("flashSuccess", consumeFromSession(session, AppConstants.SESSION_FLASH_SUCCESS));
             request.setAttribute("flashError", consumeFromSession(session, AppConstants.SESSION_FLASH_ERROR));
         }
+    }
+
+    protected Path resolveDataDir() {
+        String configuredDataDir = System.getProperty("tarecruitment.dataDir");
+        if (configuredDataDir != null && !configuredDataDir.isBlank()) {
+            return Paths.get(configuredDataDir.trim());
+        }
+
+        String contextParam = getServletContext().getInitParameter("dataDir");
+        if (contextParam != null && !contextParam.isBlank()) {
+            return Paths.get(contextParam.trim());
+        }
+
+        return Paths.get("data");
     }
 
     private String consumeFromSession(HttpSession session, String key) {

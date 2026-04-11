@@ -15,6 +15,7 @@
             <th>Email</th>
             <th>Status</th>
             <th>Applied At</th>
+            <th>Profile & CV</th>
             <th>Update Status</th>
         </tr>
         </thead>
@@ -37,6 +38,9 @@
                 </td>
                 <td><span class="badge badge-${app.status}">${app.status}</span></td>
                 <td>${app.appliedAt}</td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/mo/applicant-detail?jobId=${job.id}&taUserId=${app.taUserId}">View TA Profile</a>
+                </td>
                 <td>
                     <div class="action-wrap">
                         <form method="post" action="${pageContext.request.contextPath}/mo/update-application-status" class="inline-form">
@@ -63,7 +67,7 @@
         </c:forEach>
         <c:if test="${empty applications}">
             <tr>
-                <td colspan="6">
+                <td colspan="7">
                     <div class="empty-state">
                         <strong>No applicants yet</strong>
                         <p>Share this job posting with suitable TA candidates.</p>
