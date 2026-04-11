@@ -112,7 +112,7 @@ mvn "-Dmaven.repo.local=.m2" package
 ```
 
 ### Deploy
-Deploy `target/ta-recruitment-system-1.0.0-SNAPSHOT.war` to Tomcat 9+.
+Deploy `target/ta-recruitment-system-1.0.0-SNAPSHOT.war` to Tomcat 9（The version cannot be higher than Tomcat 9）.
 
 Then open:
 ```text
