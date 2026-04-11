@@ -1,0 +1,1 @@
+1.程序启动可能找不到 data，可以在git bash启动 Tomcat 时记得带上       export CATALINA_OPTS='-Dtarecruitment.dataDir=D:\Code\Software engineering\EBU6304-group34\data'     (你的data地址）
