@@ -1,0 +1,79 @@
+[
+  {
+    "id": "U001",
+    "username": "ta1",
+    "password": "123456",
+    "fullName": "Alice Wang",
+    "email": "alice@bupt.edu.cn",
+    "roles": [
+      "TA"
+    ],
+    "skills": [
+      "Java",
+      "Communication"
+    ]
+  },
+  {
+    "id": "U002",
+    "username": "ta2",
+    "password": "123456",
+    "fullName": "Ben Liu",
+    "email": "ben.liu@bupt.edu.cn",
+    "roles": [
+      "TA"
+    ],
+    "skills": [
+      "Python",
+      "Data Analysis"
+    ]
+  },
+  {
+    "id": "U101",
+    "username": "mo1",
+    "password": "123456",
+    "fullName": "Dr. Li",
+    "email": "li@bupt.edu.cn",
+    "roles": [
+      "MO"
+    ],
+    "skills": []
+  },
+  {
+    "id": "U102",
+    "username": "mo2",
+    "password": "123456",
+    "fullName": "Prof. Chen",
+    "email": "chen@bupt.edu.cn",
+    "roles": [
+      "MO"
+    ],
+    "skills": []
+  },
+  {
+    "id": "U151",
+    "username": "dual1",
+    "password": "123456",
+    "fullName": "Chris Zhang",
+    "email": "chris@bupt.edu.cn",
+    "roles": [
+      "TA",
+      "MO"
+    ],
+    "skills": [
+      "Programming",
+      "Mentoring"
+    ]
+  },
+  {
+    "id": "U999",
+    "username": "admin",
+    "password": "admin123",
+    "fullName": "System Admin",
+    "email": "admin@bupt.edu.cn",
+    "roles": [
+      "ADMIN"
+    ],
+    "skills": []
+  }
+]
+
