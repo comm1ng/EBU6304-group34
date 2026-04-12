@@ -1,0 +1,40 @@
+[
+  {
+    "userId": "U001",
+    "major": "Computer Science",
+    "academicYear": "Year 3",
+    "skills": [
+      "Java",
+      "Data Structures"
+    ],
+    "cvFilePath": "docs/cv/alice.pdf",
+    "cvSummary": "Strong Java lab support background.",
+    "experience": "Helped with programming labs and tutorials."
+  },
+  {
+    "userId": "U002",
+    "major": "Data Science",
+    "academicYear": "Year 2",
+    "skills": [
+      "Python",
+      "Pandas",
+      "Excel"
+    ],
+    "cvFilePath": "docs/cv/ben.pdf",
+    "cvSummary": "Comfortable supporting introductory analytics modules.",
+    "experience": "Facilitated peer-learning sessions for statistics courses."
+  },
+  {
+    "userId": "U151",
+    "major": "Software Engineering",
+    "academicYear": "Year 2",
+    "skills": [
+      "Python",
+      "SQL"
+    ],
+    "cvFilePath": "",
+    "cvSummary": "Part-time tutor with strong communication skills.",
+    "experience": "Assisted first-year coding bootcamps."
+  }
+]
+

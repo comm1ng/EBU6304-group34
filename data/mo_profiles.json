@@ -1,0 +1,21 @@
+[
+  {
+    "userId": "U101",
+    "workUnit": "BUPT International School",
+    "title": "Module Organiser",
+    "bio": "Manages module staffing."
+  },
+  {
+    "userId": "U102",
+    "workUnit": "BUPT International School",
+    "title": "Senior Lecturer",
+    "bio": "Leads digital media modules."
+  },
+  {
+    "userId": "U151",
+    "workUnit": "BUPT International School",
+    "title": "Activity Coordinator",
+    "bio": "Coordinates activities and workshops."
+  }
+]
+
