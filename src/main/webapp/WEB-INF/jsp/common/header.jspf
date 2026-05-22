@@ -37,9 +37,6 @@
                 <c:if test="${not empty activeRole}">
                     <span class="badge badge-role">${activeRole}</span>
                 </c:if>
-                <c:if test="${hasMultipleRoles}">
-                    <a class="text-action" href="${pageContext.request.contextPath}/role-select">Switch Role</a>
-                </c:if>
                 <form method="post" action="${pageContext.request.contextPath}/logout" class="inline-form">
                     <button class="btn btn-secondary" type="submit">Logout</button>
                 </form>

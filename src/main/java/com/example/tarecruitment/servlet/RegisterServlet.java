@@ -2,7 +2,6 @@ package com.example.tarecruitment.servlet;
 
 import com.example.tarecruitment.model.Role;
 import com.example.tarecruitment.model.User;
-import com.example.tarecruitment.service.CrossRoleRegistrationRequiredException;
 import com.example.tarecruitment.util.ValidationUtil;
 
 import javax.servlet.ServletException;
@@ -26,14 +25,6 @@ public class RegisterServlet extends BaseServlet {
         String email = ValidationUtil.safeTrim(request.getParameter("email"));
         String roleText = ValidationUtil.safeTrim(request.getParameter("role"));
         String workUnit = ValidationUtil.safeTrim(request.getParameter("workUnit"));
-        String confirmDecision = ValidationUtil.safeTrim(request.getParameter("confirmDecision"));
-
-        if ("cancel".equalsIgnoreCase(confirmDecision)) {
-            request.setAttribute("info", "Registration cancelled.");
-            bindForm(request, username, fullName, email, roleText, workUnit);
-            forward(request, response, "register.jsp", null, null);
-            return;
-        }
 
         Role requestedRole;
         try {
@@ -45,9 +36,6 @@ public class RegisterServlet extends BaseServlet {
             return;
         }
 
-        boolean confirmCrossRole = "continue".equalsIgnoreCase(confirmDecision)
-                || "true".equalsIgnoreCase(request.getParameter("confirmCrossRole"));
-
         try {
             User user = container().getRegistrationService().register(
                     username,
@@ -56,20 +44,13 @@ public class RegisterServlet extends BaseServlet {
                     email,
                     requestedRole,
                     workUnit,
-                    confirmCrossRole
+                    false
             );
             setFlashSuccess(request, "Registration successful for " + requestedRole + ". Please login with your account.");
             if (user != null) {
                 redirect(response, request, "/login");
                 return;
             }
-        } catch (CrossRoleRegistrationRequiredException ex) {
-            request.setAttribute("confirmRequired", true);
-            request.setAttribute("confirmMessage", ex.getMessage());
-            request.setAttribute("confirmRole", requestedRole.name());
-            bindForm(request, username, fullName, email, roleText, workUnit);
-            forward(request, response, "register.jsp", null, null);
-            return;
         } catch (IllegalArgumentException ex) {
             request.setAttribute("error", ex.getMessage());
             bindForm(request, username, fullName, email, roleText, workUnit);

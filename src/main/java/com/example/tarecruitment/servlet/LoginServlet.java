@@ -39,15 +39,7 @@ public class LoginServlet extends BaseServlet {
         User user = userOptional.get();
         HttpSession session = request.getSession();
         session.setAttribute(AppConstants.SESSION_USER_ID, user.getId());
-
-        if (user.getRoles().size() == 1) {
-            setActiveRole(request, user.getRoles().get(0));
-            redirect(response, request, "/dashboard");
-            return;
-        }
-
-        session.removeAttribute(AppConstants.SESSION_ACTIVE_ROLE);
-        setFlashSuccess(request, "Authentication successful. Please choose a role for this session.");
-        redirect(response, request, "/role-select");
+        setActiveRole(request, user.getRoles().get(0));
+        redirect(response, request, "/dashboard");
     }
 }
