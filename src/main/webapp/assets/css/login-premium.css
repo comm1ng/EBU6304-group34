@@ -214,6 +214,92 @@ body.login-page::before {
     white-space: nowrap;
 }
 
+.register-wrapper .form-side {
+    width: min(640px, 100%);
+}
+
+.register-card-premium {
+    padding: clamp(26px, 3vw, 38px);
+}
+
+.register-form-premium {
+    gap: 16px;
+}
+
+.register-grid-premium {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.register-field {
+    min-width: 0;
+}
+
+.register-field-wide {
+    grid-column: 1 / -1;
+}
+
+.register-form-premium input,
+.register-form-premium select {
+    width: 100%;
+    border-radius: 9px;
+    border: 1px solid #d2c6e5;
+    background: rgba(255, 255, 255, 0.95);
+    color: #3a2852;
+    font-size: 1.05rem;
+    line-height: 1.2;
+    padding: 12px 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register-form-premium select {
+    appearance: none;
+}
+
+.register-form-premium input::placeholder {
+    color: #8c7ea6;
+}
+
+.register-form-premium input:focus,
+.register-form-premium select:focus {
+    outline: none;
+    border-color: var(--violet-600);
+    box-shadow: 0 0 0 4px rgba(123, 65, 177, 0.16);
+}
+
+.register-confirm-alert {
+    background: rgba(255, 244, 222, 0.96);
+    color: #8b5e05;
+}
+
+.register-decision-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.register-action-secondary {
+    font-size: 1.2rem;
+}
+
+.register-cancel {
+    background: linear-gradient(90deg, #8665a7 0%, #a18abb 100%);
+    box-shadow: 0 8px 18px rgba(93, 75, 117, 0.22);
+}
+
+.register-actions-premium {
+    align-items: flex-end;
+}
+
+.register-side-note {
+    cursor: default;
+}
+
+.register-side-note:hover {
+    text-decoration: none;
+}
+
 .form-alert {
     border-radius: 10px;
     padding: 10px 12px;
@@ -282,6 +368,10 @@ body.login-page::before {
     .form-side {
         width: min(560px, 100%);
     }
+
+    .register-wrapper .form-side {
+        width: min(680px, 100%);
+    }
 }
 
 @media (max-width: 620px) {
@@ -306,6 +396,11 @@ body.login-page::before {
     .login-card {
         border-radius: 18px;
         padding: 20px 16px;
+    }
+
+    .register-grid-premium,
+    .register-decision-row {
+        grid-template-columns: 1fr;
     }
 
     .login-actions {
