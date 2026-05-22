@@ -17,6 +17,15 @@ This implementation strictly follows coursework constraints:
 - No database / ORM
 - No React/Vue/Angular
 
+- ## Iteration Plan (Agile Sprint)
+| Iteration | Key Deliverables |
+|----------|------------------|
+| Iteration 1 | User registration, login, browse jobs |
+| Iteration 2 | Job application, job posting |
+| Iteration 3 | Applicant management, workload monitoring |
+| Iteration 4 | AI skill matching & advanced features |
+
+
 ## 3) Core Role Logic
 - Login: no role dropdown before authentication.
 - Role is auto-detected from account data.
@@ -112,7 +121,7 @@ mvn "-Dmaven.repo.local=.m2" package
 ```
 
 ### Deploy
-Deploy `target/ta-recruitment-system-1.0.0-SNAPSHOT.war` to Tomcat 9+.
+Deploy `target/ta-recruitment-system-1.0.0-SNAPSHOT.war` to Tomcat 9（The version cannot be higher than Tomcat 9）.
 
 Then open:
 ```text
