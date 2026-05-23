@@ -10,6 +10,7 @@ import com.example.tarecruitment.util.IdGenerator;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ApplicationService {
@@ -63,6 +64,10 @@ public class ApplicationService {
 
     public List<JobApplication> getApplicationsByJob(String jobId) {
         return applicationRepository.findByJobId(jobId);
+    }
+
+    public Optional<JobApplication> getApplicationByJobAndTa(String jobId, String taUserId) {
+        return applicationRepository.findByJobIdAndTaUserId(jobId, taUserId);
     }
 
     public List<JobApplication> getAllApplications() {

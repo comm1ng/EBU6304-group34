@@ -1,11 +1,13 @@
 package com.example.tarecruitment.util;
 
 import com.example.tarecruitment.service.AdminService;
+import com.example.tarecruitment.service.AiAssistantService;
 import com.example.tarecruitment.service.ApplicationService;
 import com.example.tarecruitment.service.AuthService;
 import com.example.tarecruitment.service.JobService;
 import com.example.tarecruitment.service.ProfileService;
 import com.example.tarecruitment.service.RegistrationService;
+import com.example.tarecruitment.service.ResumeTextService;
 import com.example.tarecruitment.service.UserService;
 
 public class AppContainer {
@@ -16,6 +18,8 @@ public class AppContainer {
     private final JobService jobService;
     private final ApplicationService applicationService;
     private final AdminService adminService;
+    private final AiAssistantService aiAssistantService;
+    private final ResumeTextService resumeTextService;
 
     public AppContainer(AuthService authService,
                         RegistrationService registrationService,
@@ -23,7 +27,9 @@ public class AppContainer {
                         ProfileService profileService,
                         JobService jobService,
                         ApplicationService applicationService,
-                        AdminService adminService) {
+                        AdminService adminService,
+                        AiAssistantService aiAssistantService,
+                        ResumeTextService resumeTextService) {
         this.authService = authService;
         this.registrationService = registrationService;
         this.userService = userService;
@@ -31,6 +37,8 @@ public class AppContainer {
         this.jobService = jobService;
         this.applicationService = applicationService;
         this.adminService = adminService;
+        this.aiAssistantService = aiAssistantService;
+        this.resumeTextService = resumeTextService;
     }
 
     public AuthService getAuthService() {
@@ -59,5 +67,13 @@ public class AppContainer {
 
     public AdminService getAdminService() {
         return adminService;
+    }
+
+    public AiAssistantService getAiAssistantService() {
+        return aiAssistantService;
+    }
+
+    public ResumeTextService getResumeTextService() {
+        return resumeTextService;
     }
 }

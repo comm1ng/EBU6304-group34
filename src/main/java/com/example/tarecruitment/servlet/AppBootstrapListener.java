@@ -1,11 +1,14 @@
 package com.example.tarecruitment.servlet;
 
 import com.example.tarecruitment.service.AdminService;
+import com.example.tarecruitment.service.AiAssistantService;
 import com.example.tarecruitment.service.ApplicationService;
 import com.example.tarecruitment.service.AuthService;
 import com.example.tarecruitment.service.JobService;
+import com.example.tarecruitment.service.MimoChatClient;
 import com.example.tarecruitment.service.ProfileService;
 import com.example.tarecruitment.service.RegistrationService;
+import com.example.tarecruitment.service.ResumeTextService;
 import com.example.tarecruitment.service.UserService;
 import com.example.tarecruitment.storage.ApplicationRepository;
 import com.example.tarecruitment.storage.JobRepository;
@@ -55,6 +58,8 @@ public class AppBootstrapListener implements ServletContextListener {
         JobService jobService = new JobService(jobRepository);
         ApplicationService applicationService = new ApplicationService(applicationRepository, jobRepository);
         AdminService adminService = new AdminService(userRepository, jobRepository, applicationRepository);
+        AiAssistantService aiAssistantService = new AiAssistantService(MimoChatClient.fromEnvironment());
+        ResumeTextService resumeTextService = new ResumeTextService(dataDir);
 
         AppContainer container = new AppContainer(
                 authService,
@@ -63,7 +68,9 @@ public class AppBootstrapListener implements ServletContextListener {
                 profileService,
                 jobService,
                 applicationService,
-                adminService
+                adminService,
+                aiAssistantService,
+                resumeTextService
         );
         servletContext.setAttribute(AppConstants.ATTR_CONTAINER, container);
     }

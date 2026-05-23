@@ -23,10 +23,44 @@
         </div>
         <div class="filter-actions">
             <button class="btn" type="submit">Search</button>
+            <button class="btn btn-secondary" type="submit" name="ai" value="1" data-ai-loading="true">AI Recommend</button>
             <a class="btn btn-secondary" href="${pageContext.request.contextPath}/jobs">Reset</a>
         </div>
     </form>
 </section>
+
+<c:if test="${aiRequested}">
+    <section class="card ai-panel">
+        <div class="card-header-row">
+            <div>
+                <h3>AI Job Recommendations</h3>
+                <p class="text-muted">Ranked against your TA profile, skills, CV summary, and the current filters.</p>
+            </div>
+        </div>
+        <div class="recommendation-grid">
+            <c:forEach items="${aiRecommendations}" var="rec">
+                <article class="recommendation-item">
+                    <div class="recommendation-score">${rec.score}</div>
+                    <div>
+                        <strong>${rec.title}</strong>
+                        <p class="cell-sub">${rec.note}</p>
+                        <ul class="compact-list">
+                            <c:forEach items="${rec.reasons}" var="reason">
+                                <li>${reason}</li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </article>
+            </c:forEach>
+            <c:if test="${empty aiRecommendations}">
+                <div class="empty-state">
+                    <strong>No AI recommendations yet</strong>
+                    <p>Complete your TA profile or loosen the filters to improve matching.</p>
+                </div>
+            </c:if>
+        </div>
+    </section>
+</c:if>
 
 <section class="card">
     <table class="table">

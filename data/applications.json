@@ -5,8 +5,8 @@
     "taUserId": "U001",
     "status": "PENDING",
     "appliedAt": "2026-04-01T10:00:00",
-    "reviewedAt": "2026-04-10T19:36:57.675192600",
-    "reviewedByUserId": "U101"
+    "reviewedAt": null,
+    "reviewedByUserId": null
   },
   {
     "id": "A002",
@@ -22,15 +22,98 @@
     "jobId": "J003",
     "taUserId": "U151",
     "status": "PENDING",
-    "appliedAt": "2026-04-04T16:10:00"
+    "appliedAt": "2026-04-04T16:10:00",
+    "reviewedAt": null,
+    "reviewedByUserId": null
   },
   {
     "id": "A004",
     "jobId": "J004",
+    "taUserId": "U003",
+    "status": "PENDING",
+    "appliedAt": "2026-04-05T12:00:00",
+    "reviewedAt": null,
+    "reviewedByUserId": null
+  },
+  {
+    "id": "A005",
+    "jobId": "J005",
+    "taUserId": "U004",
+    "status": "PENDING",
+    "appliedAt": "2026-04-06T09:15:00",
+    "reviewedAt": null,
+    "reviewedByUserId": null
+  },
+  {
+    "id": "A006",
+    "jobId": "J006",
+    "taUserId": "U005",
+    "status": "PENDING",
+    "appliedAt": "2026-04-06T15:30:00",
+    "reviewedAt": null,
+    "reviewedByUserId": null
+  },
+  {
+    "id": "A007",
+    "jobId": "J007",
+    "taUserId": "U151",
+    "status": "PENDING",
+    "appliedAt": "2026-04-07T11:40:00",
+    "reviewedAt": null,
+    "reviewedByUserId": null
+  },
+  {
+    "id": "A008",
+    "jobId": "J001",
+    "taUserId": "U004",
+    "status": "PENDING",
+    "appliedAt": "2026-04-08T10:25:00",
+    "reviewedAt": null,
+    "reviewedByUserId": null
+  },
+  {
+    "id": "A009",
+    "jobId": "J005",
     "taUserId": "U002",
+    "status": "PENDING",
+    "appliedAt": "2026-04-08T14:00:00",
+    "reviewedAt": null,
+    "reviewedByUserId": null
+  },
+  {
+    "id": "A010",
+    "jobId": "J006",
+    "taUserId": "U003",
     "status": "REJECTED",
-    "appliedAt": "2026-03-29T12:00:00",
-    "reviewedAt": "2026-03-31T18:00:00",
+    "appliedAt": "2026-04-09T13:20:00",
+    "reviewedAt": "2026-04-10T16:00:00",
     "reviewedByUserId": "U102"
+  },
+  {
+    "id": "A011",
+    "jobId": "J004",
+    "taUserId": "U005",
+    "status": "PENDING",
+    "appliedAt": "2026-04-10T10:05:00",
+    "reviewedAt": null,
+    "reviewedByUserId": null
+  },
+  {
+    "id": "A012",
+    "jobId": "J003",
+    "taUserId": "U002",
+    "status": "PENDING",
+    "appliedAt": "2026-04-11T17:10:00",
+    "reviewedAt": null,
+    "reviewedByUserId": null
+  },
+  {
+    "id": "A013",
+    "jobId": "J007",
+    "taUserId": "U001",
+    "status": "PENDING",
+    "appliedAt": "2026-04-12T09:00:00",
+    "reviewedAt": null,
+    "reviewedByUserId": null
   }
 ]

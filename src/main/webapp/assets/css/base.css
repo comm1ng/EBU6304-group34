@@ -1,27 +1,41 @@
 :root {
-    --bg: #f3f6f9;
+    --bg: #eef3f7;
+    --bg-quiet: #f6f8fb;
     --surface: #ffffff;
-    --surface-soft: #f8fafc;
-    --line: #d8e0ea;
-    --text: #1e2a36;
-    --text-soft: #617184;
+    --surface-soft: #f7fafc;
+    --surface-tint: #edf5f6;
+    --line: #d7e1ea;
+    --line-strong: #bfcedc;
+    --text: #172331;
+    --text-soft: #5d7083;
+    --text-faint: #8495a7;
 
-    --brand-900: #102f4f;
-    --brand-700: #1e4f7a;
-    --brand-600: #296193;
-    --brand-500: #3f7db5;
+    --brand-900: #0e2a42;
+    --brand-800: #143957;
+    --brand-700: #1e557b;
+    --brand-600: #2d6f9e;
+    --brand-500: #4b8bb8;
+    --teal-700: #16706f;
+    --teal-600: #238785;
+    --green-700: #267044;
+    --red-700: #a03347;
+    --amber-700: #93640c;
 
-    --success-bg: #e6f6ee;
-    --success-text: #176d43;
-    --error-bg: #fae8eb;
-    --error-text: #8f2335;
-    --warning-bg: #fff4de;
-    --warning-text: #8b5e05;
-    --info-bg: #e9f2fb;
-    --info-text: #1b4f86;
+    --success-bg: #e7f6ed;
+    --success-text: #1f6d42;
+    --error-bg: #fae8ec;
+    --error-text: #963246;
+    --warning-bg: #fff3d8;
+    --warning-text: #8a5d08;
+    --info-bg: #e6f1fa;
+    --info-text: #23547d;
 
-    --shadow-sm: 0 4px 12px rgba(16, 47, 79, 0.08);
-    --shadow-md: 0 8px 24px rgba(16, 47, 79, 0.12);
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 10px;
+    --shadow-sm: 0 1px 3px rgba(15, 32, 46, 0.08), 0 8px 22px rgba(15, 32, 46, 0.06);
+    --shadow-md: 0 10px 30px rgba(15, 32, 46, 0.13);
+    --focus-ring: 0 0 0 3px rgba(35, 135, 133, 0.18);
 }
 
 * {
@@ -32,13 +46,17 @@ html,
 body {
     margin: 0;
     padding: 0;
+    min-height: 100%;
 }
 
 body {
-    font-family: "Segoe UI", "Trebuchet MS", "Helvetica Neue", sans-serif;
-    background: radial-gradient(circle at top right, #eaf2fb 0%, var(--bg) 58%);
+    font-family: "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+    background:
+        linear-gradient(180deg, rgba(237, 245, 246, 0.78), rgba(246, 248, 251, 0.9) 310px),
+        var(--bg);
     color: var(--text);
     line-height: 1.5;
+    font-size: 15px;
 }
 
 h1,
@@ -49,6 +67,7 @@ h5,
 h6 {
     margin: 0;
     line-height: 1.25;
+    font-weight: 750;
 }
 
 p {
@@ -56,17 +75,25 @@ p {
 }
 
 a {
-    color: var(--brand-600);
+    color: var(--brand-700);
     text-decoration: none;
 }
 
 a:hover {
+    color: var(--teal-700);
     text-decoration: underline;
 }
 
 ul {
     margin: 0;
     padding-left: 1.1rem;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
 }
 
 .text-muted {
@@ -80,4 +107,3 @@ ul {
 .top-gap {
     margin-top: 14px;
 }
-

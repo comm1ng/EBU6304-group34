@@ -7,11 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BUPT International School TA Recruitment</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/base.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/layout.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages.css">
-    <script defer src="${pageContext.request.contextPath}/assets/js/app.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/base.css?v=myprofile-polish-20260523">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/layout.css?v=myprofile-polish-20260523">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components.css?v=myprofile-polish-20260523">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages.css?v=myprofile-polish-20260523">
+    <script defer src="${pageContext.request.contextPath}/assets/js/app.js?v=myprofile-polish-20260523"></script>
 </head>
 <body class="app-body">
 <header class="app-header">

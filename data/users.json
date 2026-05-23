@@ -10,7 +10,8 @@
     ],
     "skills": [
       "Java",
-      "Communication"
+      "Communication",
+      "Data Structures"
     ]
   },
   {
@@ -24,7 +25,54 @@
     ],
     "skills": [
       "Python",
-      "Data Analysis"
+      "Data Analysis",
+      "Pandas"
+    ]
+  },
+  {
+    "id": "U003",
+    "username": "ta3",
+    "password": "123456",
+    "fullName": "Diana Sun",
+    "email": "diana.sun@bupt.edu.cn",
+    "roles": [
+      "TA"
+    ],
+    "skills": [
+      "Academic Writing",
+      "English",
+      "Feedback"
+    ]
+  },
+  {
+    "id": "U004",
+    "username": "ta4",
+    "password": "123456",
+    "fullName": "Eric Zhao",
+    "email": "eric.zhao@bupt.edu.cn",
+    "roles": [
+      "TA"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Python",
+      "Jupyter"
+    ]
+  },
+  {
+    "id": "U005",
+    "username": "ta5",
+    "password": "123456",
+    "fullName": "Fiona Chen",
+    "email": "fiona.chen@bupt.edu.cn",
+    "roles": [
+      "TA"
+    ],
+    "skills": [
+      "Web Design",
+      "HTML",
+      "CSS",
+      "Accessibility"
     ]
   },
   {
@@ -61,7 +109,8 @@
     ],
     "skills": [
       "Programming",
-      "Mentoring"
+      "Mentoring",
+      "SQL"
     ]
   },
   {
@@ -76,4 +125,3 @@
     "skills": []
   }
 ]
-

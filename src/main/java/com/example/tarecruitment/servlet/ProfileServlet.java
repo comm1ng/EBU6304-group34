@@ -8,12 +8,25 @@ import com.example.tarecruitment.util.CsvUtil;
 import com.example.tarecruitment.util.ValidationUtil;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.util.List;
+import java.util.Locale;
 
 @WebServlet(name = "profileServlet", urlPatterns = {"/profile"})
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024,
+        maxFileSize = 10 * 1024 * 1024,
+        maxRequestSize = 12 * 1024 * 1024
+)
 public class ProfileServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,7 +58,12 @@ public class ProfileServlet extends BaseServlet {
                 profile.setMajor(ValidationUtil.safeTrim(request.getParameter("major")));
                 profile.setAcademicYear(ValidationUtil.safeTrim(request.getParameter("academicYear")));
                 profile.setSkills(CsvUtil.parseCommaSeparated(request.getParameter("skills")));
-                profile.setCvFilePath(ValidationUtil.safeTrim(request.getParameter("cvFilePath")));
+
+                String uploadedCvPath = handleCvUpload(request, user.getId());
+                if (uploadedCvPath != null) {
+                    profile.setCvFilePath(uploadedCvPath);
+                }
+
                 profile.setCvSummary(ValidationUtil.safeTrim(request.getParameter("cvSummary")));
                 profile.setExperience(ValidationUtil.safeTrim(request.getParameter("experience")));
                 container().getProfileService().saveTaProfile(profile);
@@ -68,11 +86,71 @@ public class ProfileServlet extends BaseServlet {
 
     private void bindProfileByRole(HttpServletRequest request, User user, Role role) {
         if (role == Role.TA) {
-            request.setAttribute("taProfile", container().getProfileService().getOrCreateTaProfile(user.getId()));
+            TAProfile taProfile = container().getProfileService().getOrCreateTaProfile(user.getId());
+            request.setAttribute("taProfile", taProfile);
+            request.setAttribute("taSkillsText", String.join(", ", safeSkills(taProfile.getSkills())));
             return;
         }
         if (role == Role.MO) {
             request.setAttribute("moProfile", container().getProfileService().getOrCreateMoProfile(user.getId()));
         }
+    }
+
+    private List<String> safeSkills(List<String> skills) {
+        return skills == null ? List.of() : skills;
+    }
+
+    private String handleCvUpload(HttpServletRequest request, String userId) {
+        try {
+            Part cvFilePart = request.getPart("cvFile");
+            return saveCvFile(cvFilePart, userId);
+        } catch (IllegalStateException ex) {
+            throw new IllegalArgumentException("CV file exceeds the 10MB upload limit.");
+        } catch (ServletException | IOException ex) {
+            throw new IllegalArgumentException("Failed to upload CV file.");
+        }
+    }
+
+    private String saveCvFile(Part cvFilePart, String userId) throws IOException {
+        if (cvFilePart == null || cvFilePart.getSize() <= 0) {
+            return null;
+        }
+
+        String originalName = sanitizeFileName(cvFilePart.getSubmittedFileName());
+        if (originalName.isBlank()) {
+            originalName = "resume.pdf";
+        }
+
+        String lower = originalName.toLowerCase(Locale.ROOT);
+        if (!(lower.endsWith(".pdf") || lower.endsWith(".doc") || lower.endsWith(".docx"))) {
+            throw new IllegalArgumentException("CV must be a PDF, DOC, or DOCX file.");
+        }
+
+        Path uploadDir = resolveDataDir().resolve("uploads").resolve("cv").toAbsolutePath().normalize();
+        Files.createDirectories(uploadDir);
+
+        String storedFileName = userId + "_" + System.currentTimeMillis() + "_" + originalName;
+        Path target = uploadDir.resolve(storedFileName).normalize();
+        if (!target.startsWith(uploadDir)) {
+            throw new IllegalArgumentException("Invalid CV file path.");
+        }
+
+        try (InputStream inputStream = cvFilePart.getInputStream()) {
+            Files.copy(inputStream, target, StandardCopyOption.REPLACE_EXISTING);
+        }
+
+        return "uploads/cv/" + storedFileName;
+    }
+
+    private String sanitizeFileName(String fileName) {
+        if (fileName == null) {
+            return "";
+        }
+        String cleaned = fileName.replace("\\", "/");
+        int slashIndex = cleaned.lastIndexOf('/');
+        if (slashIndex >= 0) {
+            cleaned = cleaned.substring(slashIndex + 1);
+        }
+        return cleaned.replaceAll("[^a-zA-Z0-9._-]", "_");
     }
 }
