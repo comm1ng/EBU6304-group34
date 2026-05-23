@@ -60,30 +60,7 @@ public class RegistrationService {
             if (sameUsername != null && !sameUsername.getId().equals(sameEmail.getId())) {
                 throw new IllegalArgumentException("Username already exists. Please choose another username.");
             }
-
-            if (sameEmail.hasRole(requestedRole)) {
-                throw new IllegalArgumentException("You have already registered as " + requestedRole + ".");
-            }
-
-            Role existingRole = sameEmail.getRoles().stream()
-                    .filter(role -> role != requestedRole)
-                    .findFirst()
-                    .orElse(null);
-
-            if (!confirmCrossRole) {
-                String roleText = existingRole == null ? "another role" : existingRole.name();
-                String message = "You have already registered as " + roleText
-                        + ". Do you want to continue registering as " + requestedRole + "?";
-                throw new CrossRoleRegistrationRequiredException(existingRole, requestedRole, message);
-            }
-
-            sameEmail.addRole(requestedRole);
-            if (sameEmail.getFullName() == null || sameEmail.getFullName().isBlank()) {
-                sameEmail.setFullName(normalizedFullName);
-            }
-            userRepository.update(sameEmail);
-            ensureRoleProfile(sameEmail.getId(), requestedRole, workUnit);
-            return sameEmail;
+            throw new IllegalArgumentException("An account with this email already exists. Each account can only have one role.");
         }
 
         List<User> users = userRepository.findAll();

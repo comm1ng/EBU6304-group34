@@ -19,13 +19,8 @@ public class DashboardServlet extends BaseServlet {
 
         Role activeRole = getActiveRole(request);
         if (activeRole == null || !user.hasRole(activeRole)) {
-            if (user.getRoles().size() == 1) {
-                activeRole = user.getRoles().get(0);
-                setActiveRole(request, activeRole);
-            } else {
-                redirect(response, request, "/role-select");
-                return;
-            }
+            activeRole = user.getRoles().get(0);
+            setActiveRole(request, activeRole);
         }
 
         if (activeRole == Role.TA) {

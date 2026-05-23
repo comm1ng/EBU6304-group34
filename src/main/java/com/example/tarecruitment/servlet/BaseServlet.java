@@ -81,13 +81,8 @@ public abstract class BaseServlet extends HttpServlet {
 
         Role activeRole = getActiveRole(request);
         if (activeRole == null || !user.hasRole(activeRole)) {
-            if (user.getRoles().size() == 1) {
-                activeRole = user.getRoles().get(0);
-                setActiveRole(request, activeRole);
-            } else {
-                redirect(response, request, "/role-select");
-                return null;
-            }
+            activeRole = user.getRoles().get(0);
+            setActiveRole(request, activeRole);
         }
 
         for (Role allowedRole : allowedRoles) {
@@ -118,7 +113,7 @@ public abstract class BaseServlet extends HttpServlet {
         request.setAttribute("currentUser", currentUser);
         request.setAttribute("activeRole", activeRole == null ? "" : activeRole.name());
         request.setAttribute("availableRoles", currentUser == null ? List.of() : currentUser.getRoles());
-        request.setAttribute("hasMultipleRoles", currentUser != null && currentUser.getRoles().size() > 1);
+        request.setAttribute("hasMultipleRoles", false);
 
         HttpSession session = request.getSession(false);
         if (session != null) {
