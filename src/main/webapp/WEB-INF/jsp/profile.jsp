@@ -72,33 +72,35 @@
                     <h3>CV & Experience</h3>
                     <p class="text-muted">Upload a CV and summarize experience for recommendation matching.</p>
                 </div>
-                <div class="cv-upload-panel">
-                    <div>
-                        <strong>Current CV</strong>
-                        <c:choose>
-                            <c:when test="${not empty taProfile.cvFilePath}">
-                                <p class="text-muted">${taProfile.cvFilePath}</p>
-                                <a href="${pageContext.request.contextPath}/cv-file?taUserId=${currentUser.id}" target="_blank">View / Download Current CV</a>
-                            </c:when>
-                            <c:otherwise>
-                                <p class="text-muted">No CV has been uploaded yet.</p>
-                            </c:otherwise>
-                        </c:choose>
+                <div class="profile-edit-stack">
+                    <div class="cv-upload-panel">
+                        <div class="cv-current-block">
+                            <strong>Current CV</strong>
+                            <c:choose>
+                                <c:when test="${not empty taProfile.cvFilePath}">
+                                    <p class="text-muted">${taProfile.cvFilePath}</p>
+                                    <a class="btn btn-secondary btn-small" href="${pageContext.request.contextPath}/cv-file?taUserId=${currentUser.id}" target="_blank">View / Download Current CV</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <p class="text-muted">No CV has been uploaded yet.</p>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <div class="field-group">
+                            <label for="cvFile">Upload CV File</label>
+                            <input id="cvFile" name="cvFile" type="file" accept=".pdf,.doc,.docx">
+                        </div>
                     </div>
-                    <div class="field-group">
-                        <label for="cvFile">Upload CV File</label>
-                        <input id="cvFile" name="cvFile" type="file" accept=".pdf,.doc,.docx">
-                    </div>
-                </div>
-                <input id="cvFilePath" type="hidden" value="${taProfile.cvFilePath}" readonly>
-                <div class="profile-edit-grid">
-                    <div class="field-group profile-edit-span">
-                        <label for="cvSummary">CV Summary</label>
-                        <textarea id="cvSummary" name="cvSummary" rows="3">${taProfile.cvSummary}</textarea>
-                    </div>
-                    <div class="field-group profile-edit-span">
-                        <label for="experience">Experience</label>
-                        <textarea id="experience" name="experience" rows="3">${taProfile.experience}</textarea>
+                    <input id="cvFilePath" type="hidden" value="${taProfile.cvFilePath}" readonly>
+                    <div class="profile-edit-grid">
+                        <div class="field-group profile-edit-span">
+                            <label for="cvSummary">CV Summary</label>
+                            <textarea id="cvSummary" name="cvSummary" rows="4">${taProfile.cvSummary}</textarea>
+                        </div>
+                        <div class="field-group profile-edit-span">
+                            <label for="experience">Experience</label>
+                            <textarea id="experience" name="experience" rows="4">${taProfile.experience}</textarea>
+                        </div>
                     </div>
                 </div>
             </div>
