@@ -4,7 +4,44 @@
 <section class="page-head">
     <h2>Applicant Management</h2>
     <p class="text-muted">Job: <strong>${job.title}</strong> (${job.id}) | ${job.hoursPerWeek} hours/week</p>
+    <div class="button-row">
+        <a class="btn btn-secondary" href="${pageContext.request.contextPath}/mo/manage-applicants?jobId=${job.id}&ai=1" data-ai-loading="true">AI Recommend Applicants</a>
+    </div>
 </section>
+
+<c:if test="${aiRequested}">
+    <section class="card ai-panel">
+        <div class="card-header-row">
+            <div>
+                <h3>AI Hiring Recommendations</h3>
+                <p class="text-muted">Ranked against the job requirements, applicant profiles, skills, and CV summaries.</p>
+            </div>
+        </div>
+        <div class="recommendation-grid">
+            <c:forEach items="${aiRecommendations}" var="rec">
+                <article class="recommendation-item">
+                    <div class="recommendation-score">${rec.score}</div>
+                    <div>
+                        <strong>${rec.title}</strong>
+                        <p class="cell-sub">${rec.note}</p>
+                        <ul class="compact-list">
+                            <c:forEach items="${rec.reasons}" var="reason">
+                                <li>${reason}</li>
+                            </c:forEach>
+                        </ul>
+                        <a href="${pageContext.request.contextPath}/mo/applicant-detail?jobId=${job.id}&taUserId=${rec.targetId}">Review profile</a>
+                    </div>
+                </article>
+            </c:forEach>
+            <c:if test="${empty aiRecommendations}">
+                <div class="empty-state">
+                    <strong>No applicant recommendations yet</strong>
+                    <p>There are no applicants to rank for this job.</p>
+                </div>
+            </c:if>
+        </div>
+    </section>
+</c:if>
 
 <section class="card">
     <table class="table">

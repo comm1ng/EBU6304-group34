@@ -1,5 +1,6 @@
 package com.example.tarecruitment.service;
 
+import com.example.tarecruitment.model.MOProfile;
 import com.example.tarecruitment.model.Role;
 import com.example.tarecruitment.model.User;
 import com.example.tarecruitment.storage.MOProfileRepository;

@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.Locale;
 
 @WebServlet(name = "profileServlet", urlPatterns = {"/profile"})
@@ -85,12 +86,18 @@ public class ProfileServlet extends BaseServlet {
 
     private void bindProfileByRole(HttpServletRequest request, User user, Role role) {
         if (role == Role.TA) {
-            request.setAttribute("taProfile", container().getProfileService().getOrCreateTaProfile(user.getId()));
+            TAProfile taProfile = container().getProfileService().getOrCreateTaProfile(user.getId());
+            request.setAttribute("taProfile", taProfile);
+            request.setAttribute("taSkillsText", String.join(", ", safeSkills(taProfile.getSkills())));
             return;
         }
         if (role == Role.MO) {
             request.setAttribute("moProfile", container().getProfileService().getOrCreateMoProfile(user.getId()));
         }
+    }
+
+    private List<String> safeSkills(List<String> skills) {
+        return skills == null ? List.of() : skills;
     }
 
     private String handleCvUpload(HttpServletRequest request, String userId) {

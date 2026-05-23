@@ -1,8 +1,10 @@
 package com.example.tarecruitment.servlet;
 
+import com.example.tarecruitment.model.AiRecommendation;
 import com.example.tarecruitment.model.Job;
 import com.example.tarecruitment.model.JobApplication;
 import com.example.tarecruitment.model.Role;
+import com.example.tarecruitment.model.TAProfile;
 import com.example.tarecruitment.model.User;
 import com.example.tarecruitment.util.ValidationUtil;
 
@@ -29,10 +31,20 @@ public class JobsServlet extends BaseServlet {
 
         List<Job> openJobs = container().getJobService().searchOpenJobs(keyword, mode);
         List<JobApplication> myApplications = container().getApplicationService().getApplicationsByTa(user.getId());
+        boolean aiRequested = "1".equals(ValidationUtil.safeTrim(request.getParameter("ai")));
 
         Map<String, String> appliedStatusByJobId = new HashMap<>();
         for (JobApplication application : myApplications) {
             appliedStatusByJobId.put(application.getJobId(), application.getStatus().name());
+        }
+
+        if (aiRequested) {
+            TAProfile profile = container().getProfileService().getOrCreateTaProfile(user.getId());
+            String resumeText = container().getResumeTextService().extractResumeText(profile);
+            List<AiRecommendation> recommendations = container().getAiAssistantService()
+                    .recommendJobsForTa(profile, resumeText, openJobs, 5);
+            request.setAttribute("aiRecommendations", recommendations);
+            request.setAttribute("aiRequested", true);
         }
 
         request.setAttribute("keyword", keyword);

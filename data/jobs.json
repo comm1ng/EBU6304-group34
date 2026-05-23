@@ -2,9 +2,11 @@
   {
     "id": "J001",
     "title": "Java Programming TA",
-    "description": "Support Java lab sessions and answer student questions.",
+    "description": "Support Java lab sessions, review servlet assignments, and answer data structure questions.",
     "requiredSkills": [
       "Java",
+      "Servlet",
+      "Data Structures",
       "Communication"
     ],
     "hoursPerWeek": 6,
@@ -17,10 +19,11 @@
   {
     "id": "J002",
     "title": "Exam Invigilation Assistant",
-    "description": "Support invigilation and attendance checking.",
+    "description": "Support invigilation, attendance checking, incident reporting, and classroom coordination.",
     "requiredSkills": [
       "Responsibility",
-      "Punctuality"
+      "Punctuality",
+      "Communication"
     ],
     "hoursPerWeek": 4,
     "deadline": "2026-05-30",
@@ -32,10 +35,12 @@
   {
     "id": "J003",
     "title": "Programming Workshop Assistant",
-    "description": "Help organise coding workshop sessions.",
+    "description": "Help organise coding workshop sessions, mentor small groups, and prepare Python exercises.",
     "requiredSkills": [
       "Python",
-      "Presentation"
+      "Presentation",
+      "Mentoring",
+      "Communication"
     ],
     "hoursPerWeek": 5,
     "deadline": "2026-06-10",
@@ -47,30 +52,69 @@
   {
     "id": "J004",
     "title": "Academic Writing Support TA",
-    "description": "Assist students in academic writing clinics.",
+    "description": "Assist students in academic writing clinics, citation practice, essay planning, and feedback sessions.",
     "requiredSkills": [
       "Academic Writing",
-      "English"
+      "English",
+      "Feedback",
+      "Presentation"
     ],
     "hoursPerWeek": 3,
-    "deadline": "2026-05-25",
+    "deadline": "2026-06-05",
     "locationMode": "Online",
     "postedByUserId": "U102",
-    "status": "CLOSED",
+    "status": "OPEN",
     "createdAt": "2026-03-28T10:30:00"
   },
   {
     "id": "J005",
-    "title": "123456",
-    "description": "d\u0027de\u0027de",
+    "title": "Machine Learning Lab Demonstrator",
+    "description": "Support practical labs on supervised learning, scikit-learn notebooks, model evaluation, and visualization.",
     "requiredSkills": [
-      "å®¿èç"
+      "Machine Learning",
+      "Python",
+      "Jupyter",
+      "Data Visualization"
     ],
-    "hoursPerWeek": 2,
-    "deadline": "2026-04-01",
-    "locationMode": "On-campus",
+    "hoursPerWeek": 7,
+    "deadline": "2026-06-18",
+    "locationMode": "Hybrid",
     "postedByUserId": "U101",
     "status": "OPEN",
-    "createdAt": "2026-04-10T19:35:21.178592900"
+    "createdAt": "2026-04-08T15:20:00"
+  },
+  {
+    "id": "J006",
+    "title": "Web Design Studio Assistant",
+    "description": "Help students improve HTML/CSS coursework, responsive layouts, accessibility checks, and UI critique.",
+    "requiredSkills": [
+      "Web Design",
+      "HTML",
+      "CSS",
+      "Accessibility"
+    ],
+    "hoursPerWeek": 5,
+    "deadline": "2026-06-15",
+    "locationMode": "On-campus",
+    "postedByUserId": "U102",
+    "status": "OPEN",
+    "createdAt": "2026-04-09T13:10:00"
+  },
+  {
+    "id": "J007",
+    "title": "Database Tutorial Assistant",
+    "description": "Support SQL tutorials, ER modelling practice, relational algebra review, and debugging database coursework.",
+    "requiredSkills": [
+      "SQL",
+      "Database",
+      "Programming",
+      "Mentoring"
+    ],
+    "hoursPerWeek": 6,
+    "deadline": "2026-06-22",
+    "locationMode": "Online",
+    "postedByUserId": "U151",
+    "status": "OPEN",
+    "createdAt": "2026-04-10T09:45:00"
   }
 ]

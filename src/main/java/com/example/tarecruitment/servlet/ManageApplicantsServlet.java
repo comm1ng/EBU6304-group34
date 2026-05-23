@@ -1,8 +1,10 @@
 package com.example.tarecruitment.servlet;
 
+import com.example.tarecruitment.model.AiRecommendation;
 import com.example.tarecruitment.model.Job;
 import com.example.tarecruitment.model.JobApplication;
 import com.example.tarecruitment.model.Role;
+import com.example.tarecruitment.model.TAProfile;
 import com.example.tarecruitment.model.User;
 import com.example.tarecruitment.util.ValidationUtil;
 
@@ -43,10 +45,26 @@ public class ManageApplicantsServlet extends BaseServlet {
         for (User ta : container().getUserService().getTAUsers()) {
             taById.put(ta.getId(), ta);
         }
+        Map<String, TAProfile> profileByUserId = new HashMap<>();
+        Map<String, String> resumeTextByUserId = new HashMap<>();
+        for (JobApplication application : applications) {
+            TAProfile profile = container().getProfileService().getOrCreateTaProfile(application.getTaUserId());
+            profileByUserId.put(application.getTaUserId(), profile);
+            resumeTextByUserId.put(application.getTaUserId(), container().getResumeTextService().extractResumeText(profile));
+        }
+
+        boolean aiRequested = "1".equals(ValidationUtil.safeTrim(request.getParameter("ai")));
+        if (aiRequested) {
+            List<AiRecommendation> recommendations = container().getAiAssistantService()
+                    .recommendApplicantsForJob(job, applications, taById, profileByUserId, resumeTextByUserId, 5);
+            request.setAttribute("aiRecommendations", recommendations);
+            request.setAttribute("aiRequested", true);
+        }
 
         request.setAttribute("job", job);
         request.setAttribute("applications", applications);
         request.setAttribute("taById", taById);
+        request.setAttribute("profileByUserId", profileByUserId);
 
         forward(request, response, "manageApplicants.jsp", user, Role.MO);
     }
